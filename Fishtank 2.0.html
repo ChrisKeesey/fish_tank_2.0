@@ -9,7 +9,7 @@
         // Declare and contruct two objects (h1, h2) from the class HorizontalLine
         Fish f = new Fish(100,100,50,30);
         //since these are variables we don't want to ever change in the code, we capitalize them 
-        var WINDOW_WIDTH = 1100;
+        var WINDOW_WIDTH = 700;
         var WINDOW_HEIGHT = 700; 
         var GREY = 200;
         //This function only runs once at the start of the program
@@ -22,19 +22,32 @@
 
         void draw() {
           background(GREY);
-          f.drawFish();
+          f.moveFish();
 
         }
 
         class Fish {
-          var bodyColor, centerX, centerY, bodyLength, bodyHeight;
+          var bodyColor, centerX, centerY, bodyLength, bodyHeight, speed;
 
           Fish(var cX,var cY,var bL,var bH) {
-            //this.bodyColor = color(random(0,400),random(0,400),random(0,400));
+            this.bodyColor = color(random(0,400),random(0,400),random(0,400));
             centerX = cX;
             centerY = cY;
             bodyLength = bL;
             bodyHeight = bH;
+            speed = 2.5;
+          }
+
+          void moveFish() {
+            update();
+            drawFish();
+          }
+
+          void update() {
+            centerX += speed;
+            if(centerX > 740) {
+              centerX = -35;
+            }
           }
 
           void drawFish() {
